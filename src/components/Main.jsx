@@ -1,29 +1,39 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import DATA from "../data.js";
+import { getData } from "../redux/reducer.jsx";
 import LoadMore from "./LoadMore.jsx";
 import ProductCard from "./ProductCard.jsx";
 
 const Main = () => {
-      const [products, setProducts] = useState();
+  // const [products, setProducts] = useState();
+  const dispatch = useDispatch();
 
+  const { products } = useSelector(store => store.speed);
+  // console.log(products);
 
-const ethm=async()=>{
-    try {
-    const {data} =await axios("https://fakestoreapi.com/products?limit=6");      
-        return setProducts(data)
-    } catch (error) {
-        console.log(error.message);
-    }
-}
+  
+  useEffect(() => {
+    dispatch(getData());
+  }, []);
+  // const ethm=async()=>{
+  //     try {
+  //     const {data} =await axios("https://fakestoreapi.com/products?limit=6");
+  //         return setProducts(data)
+  //     } catch (error) {
+  //         console.log(error.message);
+  //     }
+  // }
 
-useEffect(()=>{
-    ethm()
-},[])
+  // useEffect(()=>{
+  //     ethm()
+  // },[])
 
   return (
+   
     <>
       <div className="main">
         <h1>SPRING COLLECTION</h1>
@@ -42,11 +52,11 @@ useEffect(()=>{
           {products?.map((item, index) => {
             return <ProductCard key={index} item={item} />;
           })}
-          <LoadMore products={products} setProducts={setProducts} />
+          <LoadMore products={products}  />
         </div>
-        
+
       </div>
-      
+
     </>
   );
 };

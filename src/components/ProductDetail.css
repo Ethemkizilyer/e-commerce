@@ -1,0 +1,15 @@
+ul.mb-3.nav.nav-tabs {
+  margin: 16px ;
+}
+
+.my-alert {
+  background : #eeeeee;
+  padding : 15px;
+  border-radius : 5px;
+  max-width : 500px;
+  width : 100%;
+  margin : auto;
+}
+.my-alert p {
+  margin-bottom : 0;
+}
