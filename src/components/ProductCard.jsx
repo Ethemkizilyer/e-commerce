@@ -16,7 +16,7 @@ const ProductCard = ({item,index}) => {
         height="90px"
         alt="product"
       />
-      <h5 className="title ">
+      <h5 data-cy="ert" className="title ">
         {item.title}
       </h5>
       {/* <p className="content">{item.description}</p> */}
