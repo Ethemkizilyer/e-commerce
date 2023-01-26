@@ -1,3 +1,7 @@
+Live: https://e-commerce-gold-six.vercel.app/
+
+https://user-images.githubusercontent.com/106928233/214873275-16bdaa37-2b8e-4174-9172-26f5be0ba90f.mp4
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
