@@ -4,18 +4,15 @@ import { Button } from 'react-bootstrap'
 import ProductCard from './ProductCard'
 import Data from "../data.js"
 
-const LoadMore = ({products ,setProducts}) => {
-    const [showButton,setShowButton]=useState(true)
-// console.log(Data);
-    const eth =  () => {
-    
-         setShowButton(false);
-    
-    };
-
+const LoadMore = ({ data }) => {
+  const [showButton, setShowButton] = useState(true);
+  // console.log(Data);
+  const eth = () => {
+    setShowButton(false);
+  };
 
   return (
-<>
+    <>
       {showButton ? (
         <Button
           className="color mx-auto"
@@ -25,9 +22,13 @@ const LoadMore = ({products ,setProducts}) => {
         >
           Click me to load more
         </Button>
-      ): Data?.map((item,index)=>{return <ProductCard item={item} key={index}/>})}
- </>   
+      ) : (
+        Data?.map((item, index) => {
+          return <ProductCard item={item} key={index} />;
+        })
+      )}
+    </>
   );
-}
+};
 
 export default LoadMore
