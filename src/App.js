@@ -19,7 +19,7 @@ const dispatch=useDispatch()
 useEffect(()=>{
   dispatch(getData())
 },[dispatch])
-const { products } = useSelector((store) => store.speed);
+const { products,data } = useSelector((store) => store.speed);
 
 
   return (
@@ -31,12 +31,12 @@ const { products } = useSelector((store) => store.speed);
 
           <Route
             path="/detail/:id"
-            element={<ProductDetail products={products} />}
+            element={<ProductDetail products={products} data={data} />}
           />
-          <Route  path="/cart" component={<Cart/>} />
-          <Route  path="/about" component={<LearnMore />} />
-          <Route path="/contact" component={<Contact/>} />
-          <Route path="/checkout" component={<Checkout/>} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/about" element={<LearnMore />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </BrowserRouter>
     </div>

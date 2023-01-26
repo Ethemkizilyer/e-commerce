@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
 
 const Checkout = () => {
-  const state = useSelector((state) => state);
+   const { products } = useSelector((state) => state.speed);
+   console.log(products);
 
   let total = 0;
   const itemList = (item) => {
@@ -14,7 +15,7 @@ const Checkout = () => {
         <div>
           <h6 className="my-0">{item.name}</h6>
         </div>
-        <span className="text-muted">£{item.price}</span>
+        <span className="text-muted">₺{item.price}</span>
       </li>
     );
   };
@@ -27,15 +28,15 @@ const Checkout = () => {
             <h4 className="d-flex justify-content-between align-items-center mb-3">
               <span className="text-primary">Your cart</span>
               <span className="badge bg-primary rounded-pill">
-                {state.length}
+                {products.length}
               </span>
             </h4>
             <ul className="list-group mb-3">
-              {state.map(itemList)}
+              {products.map(itemList)}
 
               <li className="list-group-item d-flex justify-content-between">
-                <span>Total (GBP)</span>
-                <strong>£{total}</strong>
+                <span>Total (TL)</span>
+                <strong>₺{total}</strong>
               </li>
             </ul>
 
@@ -158,6 +159,7 @@ const Checkout = () => {
                   </label>
                   <select className="form-select" id="country" required="">
                     <option value="">Choose...</option>
+                    <option>Turkey</option>
                     <option>United Kingdom</option>
                   </select>
                   <div className="invalid-feedback">
@@ -171,6 +173,7 @@ const Checkout = () => {
                   </label>
                   <select className="form-select" id="state" required="">
                     <option value="">Choose...</option>
+                    <option>Turkey</option>
                     <option>London</option>
                   </select>
                   <div className="invalid-feedback">
