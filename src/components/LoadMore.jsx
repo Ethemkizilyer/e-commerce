@@ -6,26 +6,13 @@ import Data from "../data.js"
 
 const LoadMore = ({products ,setProducts}) => {
     const [showButton,setShowButton]=useState(true)
-console.log(Data);
+// console.log(Data);
     const eth =  () => {
     
          setShowButton(false);
     
     };
-    const et = async () => {
-      try {
-        const { data } = await axios(
-          "https://fakestoreapi.com/products?limit=3"
-        );
-        return setProducts([...products, ...data]);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
 
-    useEffect(() => {
-      et();
-    }, []);
 
   return (
 <>

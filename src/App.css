@@ -67,3 +67,12 @@ white-space: nowrap;
   width: 15rem !important;
   
 }
+.spring-collection{
+  background-image: url('./detail-image.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 750px;
+  color: white;
+  padding-top: 10%;
+  opacity: .8;
+}
