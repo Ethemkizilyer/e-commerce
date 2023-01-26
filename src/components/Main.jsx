@@ -35,14 +35,16 @@ const Main = () => {
   return (
     <>
       <div className="main">
+        <div className="child">
         <h1>SPRING COLLECTION</h1>
-        <p>
+        <p className="w-50 mx-auto">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse cumque
           nisi repudiandae voluptates magni dolorem?
         </p>
-        <Button variant="outline-info" as={Link} to="/about">
+        <Button variant="outline-success" as={Link} to="/about">
           Learn More
         </Button>
+        </div>
       </div>
       <br />
       <br />
