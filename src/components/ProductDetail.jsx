@@ -5,8 +5,8 @@ import "./ProductDetail.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addToBasket, getData } from "../redux/reducer";
 
-function ProductDetail({ products }) {
-  const [pro, setPro] = useState(JSON.parse(localStorage.getItem("product")));
+function ProductDetail({ products,data}) {
+  const [pro, setPro] = useState(JSON.parse(localStorage.getItem("product")) || []);
 
   let dispatch = useDispatch();
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ function ProductDetail({ products }) {
 
   //   const { products } = useSelector((store) => store.speed);
 
-  let ert = products?.find((product) => {
+  let ert = data?.find((product) => {
     return product.id == id;
   });
 
@@ -38,7 +38,7 @@ function ProductDetail({ products }) {
     btnEl.innerText = "Added to Cart!";
   };
 
-  let data = {
+  let datam = {
     id: pro?.id,
     name: pro?.title,
     price: pro?.price,
@@ -58,16 +58,12 @@ function ProductDetail({ products }) {
             <div className="pt-5">
               <img src={pro?.image} width="100%" alt="" />
               <h5 className="title">{pro?.title}</h5>
-              <p>£{pro?.price}.00</p>
+              <p>₺{pro?.price}</p>
               <button
                 id="upload-btn"
                 className="btn btn-secondary"
                 onClick={() => {
-                  dispatch(
-                    addToBasket(
-                      (data)
-                    )
-                  );
+                  dispatch(addToBasket(datam));
                   return updateBtn();
                 }}
               >

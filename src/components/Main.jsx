@@ -12,7 +12,7 @@ const Main = () => {
   // const [products, setProducts] = useState();
   const dispatch = useDispatch();
 
-  const { products } = useSelector(store => store.speed);
+  const { products,data } = useSelector(store => store.speed);
   // console.log(products);
 
   
@@ -33,7 +33,6 @@ const Main = () => {
   // },[])
 
   return (
-   
     <>
       <div className="main">
         <h1>SPRING COLLECTION</h1>
@@ -49,14 +48,12 @@ const Main = () => {
       <br />
       <div className="container">
         <div className="row">
-          {products?.map((item, index) => {
+          {data?.map((item, index) => {
             return <ProductCard key={index} item={item} />;
           })}
-          <LoadMore products={products}  />
+          <LoadMore data={data} />
         </div>
-
       </div>
-
     </>
   );
 };

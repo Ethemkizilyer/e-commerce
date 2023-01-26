@@ -5,10 +5,12 @@ const initialState = {
   loading: false,
   error: false,
   products: [],
+  data:[]
 };
 
 export const findItemIndex = (state, action) => {
-  return state.products?.findIndex((item) => item.id === action.payload.id);
+  const nami=state.products?.findIndex((item) => item.id === action.payload.id);
+  return nami
 };
 
 export const getData = createAsyncThunk("product/getProductData", async () => {
@@ -28,37 +30,40 @@ export const wordSlice = createSlice({
     addToBasket: (state, action) => {
 console.log(action.payload);
 console.log(state.products);
+console.log(state.loading);
       let sameItemFinder = findItemIndex(state, action);
 console.log(sameItemFinder);
       if (sameItemFinder >= 0) {
         let copy = [...state.products];
         copy[sameItemFinder].qty++;
         copy[sameItemFinder].price += action.payload.price;
-        return copy;
+        
       } else {
         let copyItem = [...state.products];
         copyItem.push(action.payload);
-        return copyItem;
+       state.products=copyItem
       }
     },
     deleteItem: (state, action) => {
-      return state.filter((item) => item.id !== action.data.id);
+      state.products = state.products.filter(
+        (item) => item.id !== action.payload.id
+      );
     },
     qtyIncrease: (state, action) => {
       let sameItemFinder = findItemIndex(state, action);
-      let copy = [...state];
+      let copy = state.products;
       copy[sameItemFinder].qty++;
-      let oneItemPrice = action.data.price / action.data.qty;
+      let oneItemPrice = action.payload.price / action.payload.qty;
       copy[sameItemFinder].price += oneItemPrice;
-      return copy;
+   
     },
     qtyDecrease: (state, action) => {
       let sameItemFinder = findItemIndex(state, action);
-      let copy = [...state];
+      let copy = state.products;
       copy[sameItemFinder].qty--;
-      let oneItemPrice = action.data.price / action.data.qty;
+      let oneItemPrice = action.payload.price / action.payload.qty;
       copy[sameItemFinder].price -= oneItemPrice;
-      return copy;
+     
     },
   },
   extraReducers: (builder) => {
@@ -68,7 +73,7 @@ console.log(sameItemFinder);
       })
       .addCase(getData.fulfilled, (state, action) => {
         state.loading = false;
-        state.products = action.payload;
+        state.data = action.payload;
         state.error = false;
       })
       .addCase(getData.rejected, (state) => {
